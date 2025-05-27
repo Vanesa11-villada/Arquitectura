@@ -7,8 +7,11 @@ WORKDIR /usr/src/app
 # Copia los archivos de dependencias primero para aprovechar el cache de Docker
 COPY package*.json ./
 
+#Aviso de checkpoint
+RUN curl -I https://registry.npmjs.org || echo "Conectividad fallida, pero continuamos..."
+
 # Instala las dependencias del proyecto
-RUN npm install
+RUN npm install --no-optional --loglevel=warn
 
 # Copia el resto del proyecto al contenedor
 COPY . .
