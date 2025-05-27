@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     // Se intenta conectar a MongoDB utilizando la URI y algunas opciones de configuración
-    await mongoose.connect('mongodb://localhost:27017/festivos', {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/festivos', {
+
       // La opción useNewUrlParser indica usar el nuevo analizador de URLs
       useNewUrlParser: true,
       // useUnifiedTopology activa el nuevo motor de monitoreo de servidores
